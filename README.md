@@ -1,105 +1,24 @@
-[![Shipping files](https://github.com/neuefische/ds-eda-project-template/actions/workflows/workflow-03.yml/badge.svg?branch=main&event=workflow_dispatch)](https://github.com/neuefische/ds-eda-project-template/actions/workflows/workflow-03.yml)
-# ds-project-template
+# Timoty Stevens
 
-Template for creating ds simple projects
+_Owns expensive houses in the center, needs to get rid, best timing within a year, open for renovation when profits rise_
 
-## Requirements
+## Find the center of the King County DC Washington USA
 
-- pyenv
-- python==3.11.3
+from the data set I've extracted the zipcodes list. geo json data was taken from here:
+[WA_Washington_ZIP_codes_geo](https://github.com/OpenDataDE/State-zip-code-GeoJSON/blob/master/wa_washington_zip_codes_geo.min.json)
 
-## Setup
+to make processing faster and remove unnecessary details from graphs I filtered out only codes used in data set.
 
-One of the first steps when starting any data science project is to create a virtual environment. For this project you have to create this environment from scratch yourself. However, you should be already familiar with the commands you will need to do so. The general workflow consists of... 
+Next step is to build a GEO map with points on place of the houses and their prices marks.
 
-* setting the python version locally to 3.11.3
-* creating a virtual environment using the `venv` module
-* activating your newly created environment 
-* upgrading `pip` (This step is not absolutely necessary, but will save you trouble when installing some packages.)
-* installing the required packages via `pip`
+![prices heatmap](img/prices_heatmap.png)
 
-At the end, you want to make sure that people who are interested in your project can create an identical environment on their own computer in order to be able to run your code without running into errors. Therefore you can create a `requirements file` and add it to your repository. You can create such a file by running the following command: 
+It is pretty obvious, that we can select about 6 top blocks, where the prices are highest and they are located in center area. To check, let's make a statistical investigation.
 
-```bash
-pip freeze > requirements.txt
-```
+![prices boxplot](img/prices_boxplot.png)
 
-*Note: In rare case such a requirements file created with `pip freeze` might not ensure that another (especially M1 chip) user can install and execute it properly. This can happen if libraries need to be compiled (e.g. SciPy). Then it also depends on environment variables and the actual system libraries.*
+It is pretty obvious, that the most expensive houses located in the areas with highest median price. according to the diagram I can take highest 10 - 12 values, which is nicely matches with heatmap image
 
-### Unit testing (Optional)
+let's check this
 
-If you write python scripts for your data processing methods, you can also write unit tests. In order to run the tests execute in terminal:
-
-```bash
-pytest
-```
-
-This command will execute all the functions in your project that start with the word **test**.
-
-## Set up your Environment
-This repo contains a requirements.txt file with a list of all the packages and dependencies you will need.
-
-Before you can start with plotly in Jupyter Lab you have to install node.js (if you haven't done it before).
-- Check **Node version**  by run the following commands:
-    ```sh
-    node -v
-    ```
-    If you haven't installed it yet, begin at `step_1`. Otherwise, proceed to `step_2`.
-
-
-### **`macOS`** type the following commands : 
-
-
-- `Step_1:` Update Homebrew and install Node by following commands:
-    ```sh
-    brew update
-    brew install node
-    ```
-
-- `Step_2:` Install the virtual environment and the required packages by following commands:
-
-    ```BASH
-    pyenv local 3.11.3
-    python -m venv .venv
-    source .venv/bin/activate
-    pip install --upgrade pip
-    pip install -r requirements.txt
-    ```
-### **`WindowsOS`** type the following commands :
-
-
-- `Step_1:` Update Chocolatey and install Node by following commands:
-    ```sh
-    choco upgrade chocolatey
-    choco install nodejs
-    ```
-
-- `Step_2:` Install the virtual environment and the required packages by following commands.
-
-   For `PowerShell` CLI :
-
-    ```PowerShell
-    pyenv local 3.11.3
-    python -m venv .venv
-    .venv\Scripts\Activate.ps1
-    pip install --upgrade pip
-    pip install -r requirements.txt
-    ```
-
-    For `Git-Bash` CLI :
-  
-    ```BASH
-    pyenv local 3.11.3
-    python -m venv .venv
-    source .venv/Scripts/activate
-    pip install --upgrade pip
-    pip install -r requirements.txt
-    ```
- 
-
- **`Note:`**
-    If you encounter an error when trying to run `pip install --upgrade pip`, try using the following command:
-
-   ```Bash
-   python.exe -m pip install --upgrade pip
-   ```
+[98039, 98004, 98040, 98112, 98005, 98006, 98119, 98075, 98109, 98102]
