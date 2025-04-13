@@ -52,6 +52,8 @@ def set_column_types(df):
     # some numbers are just numbers
     df['bedrooms'] = df['bedrooms'].astype(np.int8, errors="raise")
 
+    df['price'] = df['price'] / 1e6
+
 
 
 def handle_nan_values(df):
