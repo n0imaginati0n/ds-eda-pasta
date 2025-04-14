@@ -17,8 +17,8 @@ It is pretty obvious, that we can select about 6 top blocks, where the prices ar
 
 ![prices boxplot](img/prices_boxplot.png)
 
-It is pretty obvious, that the most expensive houses located in the areas with highest median price. according to the diagram I can take highest 10 - 12 values, which is nicely matches with heatmap image
+It is pretty obvious, that the most expensive houses located in the areas with highest median price. according to the diagram I can take highest 4-5 values, which is nicely matches with heatmap image. But the maximal prices where payed in two other areas. I will analyze them separate
 
 let's check this
 
-[98039, 98004, 98040, 98112, 98005, 98006, 98119, 98075, 98109, 98102]
+[98039, 98004, 98040, 98112, 98005, 98006]
